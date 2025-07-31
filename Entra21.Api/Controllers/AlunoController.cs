@@ -1,5 +1,6 @@
 ﻿using System.Reflection;
 using Microsoft.AspNetCore.Mvc;
+using Modelo.Application.Interface;
 using Modelo.Domain;
 
 
@@ -11,17 +12,21 @@ namespace Entra21.Api.Controllers
 
     public class AlunoController : Controller
     {
+
+        private readonly IAlunoApplication _alunoApplication;
+
+        public AlunoController(IAlunoApplication alunoApplication)
+        {
+            _alunoApplication = alunoApplication;
+        }
+
+
         [HttpGet("BuscarDadosAluno/{id}")]
         public IActionResult BuscarDadosAluno(int id)
         {
             try
             {
-                Aluno aluno = new Aluno();
-
-                aluno.Id = 1;
-                aluno.Nome = "João da Silva";
-                aluno.Idade = 20;
-                aluno.Cep = "12345-678";
+                var aluno = _alunoApplication.BuscarAluno(id);
 
                 return Ok(aluno);
 
