@@ -10,5 +10,13 @@ namespace Modelo.Infra.Repositorio.Interface
     public interface IAlunoRepositorio
     {
         Aluno BuscarId (int id);
+
+        void InserirAluno(Aluno aluno);
+
+        void AtualizarAluno(Aluno aluno);
+
+        void AtualizarAlunoParcial(Aluno aluno);
+
+        void ExcluirAluno(int id);
     }
 }
